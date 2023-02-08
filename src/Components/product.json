@@ -1,0 +1,3 @@
+[  {    "id": 1,    "title": "Product 1",    "price": 9.99,    "image": "product1.webp" ,"description":"bababababbabababbaababla" },  
+{    "id": 2,    "title": "Product 2",    "price": 19.99,    "image": "product2.jpg"  ,"description":"bababababbabababbaala" }, 
+ {    "id": 3,    "title": "Product 3",    "price": 29.99,    "image": "product3.jpg" ,"description":"bababababbabababbala"  }]
