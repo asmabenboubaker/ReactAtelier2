@@ -1,6 +1,14 @@
 import React , { useState ,useEffect }from "react";
 import {Alert, Button } from "react-bootstrap"; 
+import { Outlet } from "react-router-dom";
+import ProductDetails from "./ProductDetails";
+import { Link } from "react-router-dom";
 const Product = (props) => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+  };
     const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
     let img = require(`../assets/images/${props.image}`);
     const [showAlert, setShowAlert] = useState(false);
@@ -13,16 +21,20 @@ const Product = (props) => {
         setTimeout(() => setShowAlert(false), 2000);
       };
        
-    
+    console.log("id: "+props.id);
   return (
     <div>
          
     <div >
-        <img src={img} alt={props.name}  style={{ width: "200px", height: "200px", objectFit: "cover" }}/>        
-        <h2>title:{props.title}</h2>
+        <img src={img} alt={props.name}  style={{ width: "200px", height: "200px", objectFit: "cover" }}/>    
+        <p>id: {props.id}</p>    
+        <h2>
+          <Link to={`/products/${props.id}`}>title:{props.title}</Link>
+        </h2>
         <p>Price: {props.price}</p>
         <p>Description: {props.description}</p>  
         <div style={{ display: "flex" }}> 
+        {selectedProduct && <ProductDetails product={selectedProduct} />}
         <Button variant="primary" onClick={handleLike}>
         like
       </Button>
@@ -37,7 +49,9 @@ const Product = (props) => {
        you bought an item 
         </Alert>
       )}
+      <Outlet/>
     </div>
+    
   );
 };
 

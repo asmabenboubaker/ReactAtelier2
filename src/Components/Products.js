@@ -1,11 +1,15 @@
- 
+
 import Product from "./Product";
 import productsData from "./product.json";
 import React , { useState ,useEffect }from "react";
 import {Alert, Button } from "react-bootstrap"; 
+import { Outlet } from "react-router-dom";
+ 
 
-
+import ProductDetails from "./ProductDetails";
 const Products = () => {
+  
+  
     const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const handleLike = () => {
@@ -18,7 +22,7 @@ const Products = () => {
       }, []);
   const productComponents = productsData.map((product) => (
     <Product
-      key={product.id}
+      id={product.id}
       title={product.title}
       price={product.price}
       image={product.image}
@@ -40,7 +44,7 @@ const Products = () => {
           {product}
         </div>
       ))}
-      
+      <Outlet/>
     </div>
     
   );

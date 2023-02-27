@@ -1,6 +1,17 @@
 // import logo from './logo.svg';
 import './App.css';
 import Products from "./Components/Products";
+import Product from "./Components/Product";
+import ProductDetails from './Components/ProductDetails';
+import {
+  BrowserRouter,
+  Routes, // instead of "Switch"
+  Route,
+} from "react-router-dom";
+//import { Route, Routes } from 'react-router-dom';
+import Home from "./Components/home"
+import NotFound from "./Components/NotFound"
+import NavigationBar from "./Components/NavigationBar/Navbar"
 const option=(
   <ol>
     <li>TWIN</li>
@@ -52,12 +63,17 @@ const tab = numbers.filter(v => v % 2 == 0).map((v,ind) =>
 <li key={ind}>{v * v}</li>);
 function App() {
   return (
-    <div>
-      <h1>Our Products</h1>
-      <Products />
-    </div>
+    <div className="App">
+    <NavigationBar />
+    <Routes>
+      <Route exact path="/" element={<Home/>} />
+      <Route exact path="/products" element={<Products/>} />
+      <Route path="*" element={<NotFound/>} />
+      <Route path="/products/:id" element={<ProductDetails />} />
+      </Routes>
+  </div>
 
-  );
+  );// fel router dom v6.8 ma3adech famma component = {} wallet element={<esmelKhra/>}
 }
 
 export default App;
